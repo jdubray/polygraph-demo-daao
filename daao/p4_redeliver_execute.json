@@ -1,0 +1,10 @@
+{"op":"submit","order":"a4","actor":"Alice","window_start":10,"window_end":100,"t":10}
+{"op":"approve","order":"a4","actor":"Bob","t":20}
+{"op":"approve","order":"a4","actor":"Charlie","t":30}
+{"op":"release","order":"a4","t":40}
+{"op":"release","order":"a4","t":41}
+{"op":"acknowledge","order":"a4","t":50}
+{"op":"execute","order":"a4","t":60}
+{"op":"execute","order":"a4","t":61}
+{"op":"execute","order":"a4","t":62}
+{"op":"close","order":"a4","t":70}

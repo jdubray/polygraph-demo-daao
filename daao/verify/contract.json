@@ -1,0 +1,52 @@
+{
+  "lang": "javascript",
+  "stateKeys": [
+    { "name": "state", "type": "enum: DRAFT | PENDING_APPROVAL | APPROVED | RELEASED | ACKNOWLEDGED | EXECUTED | CLOSED | ABORTED | EXPIRED" },
+    { "name": "proposer", "type": "string actor id, or null before submit" },
+    { "name": "approvers", "type": "array of distinct approver ids (never includes the proposer)" },
+    { "name": "window_start", "type": "number (logical tick), or null before submit" },
+    { "name": "window_end", "type": "number (logical tick), or null before submit" },
+    { "name": "transmitted", "type": "boolean — transmit() effect emitted (one-shot)" },
+    { "name": "executed", "type": "boolean — execute() effect emitted (one-shot)" }
+  ],
+  "initState": {
+    "state": "DRAFT",
+    "proposer": null,
+    "approvers": [],
+    "window_start": null,
+    "window_end": null,
+    "transmitted": false,
+    "executed": false
+  },
+  "actions": {
+    "submit": { "dataFields": { "actor": "proposer id", "window_start": "window open tick", "window_end": "window close tick" } },
+    "approve": { "dataFields": { "actor": "approver id", "now": "logical tick of this approval" } },
+    "release": { "dataFields": { "now": "logical tick of release" } },
+    "acknowledge": { "dataFields": {} },
+    "execute": { "dataFields": { "now": "logical tick of execution" } },
+    "close": { "dataFields": {} },
+    "abort": { "dataFields": {} },
+    "expire": { "dataFields": { "now": "logical tick at which expiry is checked" } }
+  },
+  "dataDomain": {
+    "submit": { "actor": ["alice"], "window_start": [10], "window_end": [100] },
+    "approve": { "actor": ["alice", "bob", "carol"], "now": [5, 50, 150] },
+    "release": { "now": [50, 150] },
+    "acknowledge": {},
+    "execute": { "now": [50, 150] },
+    "close": {},
+    "abort": {},
+    "expire": { "now": [50, 150] }
+  },
+  "terminalStates": ["CLOSED", "ABORTED", "EXPIRED"],
+  "specialRules": [
+    { "name": "approver-not-proposer", "note": "approve is a no-op (reject 'approver-is-proposer') when actor == proposer. Enforces one half of S1.", "whenState": "PENDING_APPROVAL", "whenAction": "approve" },
+    { "name": "distinct-approvers", "note": "approve is a no-op (reject 'duplicate-approver') when actor is already in approvers. A redelivered approval never counts twice; APPROVED needs 2 DISTINCT ids.", "whenState": "PENDING_APPROVAL", "whenAction": "approve" },
+    { "name": "approve-in-window", "note": "approve is a no-op (reject 'approve-out-of-window') unless window_start <= now <= window_end.", "whenState": "PENDING_APPROVAL", "whenAction": "approve" },
+    { "name": "release-in-window", "note": "release fires (and emits transmit) only when now is in window; else reject 'release-out-of-window'. S2.", "whenState": "APPROVED", "whenAction": "release" },
+    { "name": "execute-in-window", "note": "execute fires (and emits execute) only when now is in window; else reject 'execute-out-of-window'. S2.", "whenState": "ACKNOWLEDGED", "whenAction": "execute" },
+    { "name": "expire-after-window-end", "note": "expire fires only when now > window_end; else reject 'expire-before-window-end'.", "whenState": "any", "whenAction": "expire" },
+    { "name": "abort-pre-execution-only", "note": "abort is allowed only from PENDING_APPROVAL/APPROVED/RELEASED/ACKNOWLEDGED; a no-op elsewhere (reject 'abort-not-allowed-here'). L1 recall.", "whenState": "any", "whenAction": "abort" }
+  ],
+  "invariants": "invariants.mjs"
+}

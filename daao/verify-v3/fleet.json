@@ -1,0 +1,7 @@
+[
+  { "state": "APPROVED", "proposer": "alice", "approvers": ["bob", "carol"], "window_start": 10, "window_end": 100, "transmitted": false, "executed": false },
+  { "state": "PENDING_APPROVAL", "proposer": "alice", "approvers": ["bob"], "window_start": 10, "window_end": 100, "transmitted": false, "executed": false },
+  { "state": "RELEASED", "proposer": "alice", "approvers": ["bob", "carol"], "window_start": 10, "window_end": 100, "transmitted": true, "executed": false },
+  { "state": "ACKNOWLEDGED", "proposer": "alice", "approvers": ["bob", "carol"], "window_start": 10, "window_end": 100, "transmitted": true, "executed": false },
+  { "state": "CLOSED", "proposer": "alice", "approvers": ["bob", "carol"], "window_start": 10, "window_end": 100, "transmitted": true, "executed": true }
+]

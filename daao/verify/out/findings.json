@@ -1,0 +1,890 @@
+{
+  "summary": {
+    "specs": 3,
+    "liveSpecs": 3,
+    "deadSpecs": [],
+    "windows": 54,
+    "consistent": 54,
+    "specError": 0,
+    "codeFinding": 0,
+    "unscoreableAll": 0,
+    "unhandledWindows": 0
+  },
+  "findings": [],
+  "perWindow": [
+    {
+      "scenario": "abort_after_ack.ndjson",
+      "index": 0,
+      "action": "submit",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "abort_after_ack.ndjson",
+      "index": 1,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "abort_after_ack.ndjson",
+      "index": 2,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "abort_after_ack.ndjson",
+      "index": 3,
+      "action": "release",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "abort_after_ack.ndjson",
+      "index": 4,
+      "action": "acknowledge",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "abort_after_ack.ndjson",
+      "index": 5,
+      "action": "abort",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "expire_after_window.ndjson",
+      "index": 0,
+      "action": "submit",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "expire_after_window.ndjson",
+      "index": 1,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "expire_after_window.ndjson",
+      "index": 2,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "expire_after_window.ndjson",
+      "index": 3,
+      "action": "expire",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "rejected(expire-before-window-end)",
+        "rejected(expire-before-window-end)",
+        "rejected(expire-before-window-end)"
+      ]
+    },
+    {
+      "scenario": "expire_after_window.ndjson",
+      "index": 4,
+      "action": "expire",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "happy_path.ndjson",
+      "index": 0,
+      "action": "submit",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "happy_path.ndjson",
+      "index": 1,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "happy_path.ndjson",
+      "index": 2,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "happy_path.ndjson",
+      "index": 3,
+      "action": "release",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "happy_path.ndjson",
+      "index": 4,
+      "action": "acknowledge",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "happy_path.ndjson",
+      "index": 5,
+      "action": "execute",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "happy_path.ndjson",
+      "index": 6,
+      "action": "close",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p1_self_approval.ndjson",
+      "index": 0,
+      "action": "submit",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p1_self_approval.ndjson",
+      "index": 1,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "rejected(approver-is-proposer)",
+        "rejected(approver-is-proposer)",
+        "rejected(approver-is-proposer)"
+      ]
+    },
+    {
+      "scenario": "p1_self_approval.ndjson",
+      "index": 2,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p1_self_approval.ndjson",
+      "index": 3,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "rejected(approver-is-proposer)",
+        "rejected(approver-is-proposer)",
+        "rejected(approver-is-proposer)"
+      ]
+    },
+    {
+      "scenario": "p1_self_approval.ndjson",
+      "index": 4,
+      "action": "abort",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p2_dup_approver.ndjson",
+      "index": 0,
+      "action": "submit",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p2_dup_approver.ndjson",
+      "index": 1,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p2_dup_approver.ndjson",
+      "index": 2,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "rejected(duplicate-approver)",
+        "rejected(duplicate-approver)",
+        "rejected(duplicate-approver)"
+      ]
+    },
+    {
+      "scenario": "p2_dup_approver.ndjson",
+      "index": 3,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "rejected(duplicate-approver)",
+        "rejected(duplicate-approver)",
+        "rejected(duplicate-approver)"
+      ]
+    },
+    {
+      "scenario": "p2_dup_approver.ndjson",
+      "index": 4,
+      "action": "abort",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p3_out_of_window.ndjson",
+      "index": 0,
+      "action": "submit",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p3_out_of_window.ndjson",
+      "index": 1,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p3_out_of_window.ndjson",
+      "index": 2,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p3_out_of_window.ndjson",
+      "index": 3,
+      "action": "release",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p3_out_of_window.ndjson",
+      "index": 4,
+      "action": "acknowledge",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p3_out_of_window.ndjson",
+      "index": 5,
+      "action": "execute",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "rejected(execute-out-of-window)",
+        "rejected(execute-out-of-window)",
+        "rejected(execute-out-of-window)"
+      ]
+    },
+    {
+      "scenario": "p3_out_of_window.ndjson",
+      "index": 6,
+      "action": "abort",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p4_redeliver_execute.ndjson",
+      "index": 0,
+      "action": "submit",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p4_redeliver_execute.ndjson",
+      "index": 1,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p4_redeliver_execute.ndjson",
+      "index": 2,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p4_redeliver_execute.ndjson",
+      "index": 3,
+      "action": "release",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p4_redeliver_execute.ndjson",
+      "index": 4,
+      "action": "release",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "rejected(release-only-when-approved)",
+        "rejected(release-only-when-approved)",
+        "rejected(release-only-when-approved)"
+      ]
+    },
+    {
+      "scenario": "p4_redeliver_execute.ndjson",
+      "index": 5,
+      "action": "acknowledge",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p4_redeliver_execute.ndjson",
+      "index": 6,
+      "action": "execute",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "p4_redeliver_execute.ndjson",
+      "index": 7,
+      "action": "execute",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "rejected(execute-only-when-acknowledged)",
+        "rejected(execute-only-when-acknowledged)",
+        "rejected(execute-only-when-acknowledged)"
+      ]
+    },
+    {
+      "scenario": "p4_redeliver_execute.ndjson",
+      "index": 8,
+      "action": "close",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "terminal_noops.ndjson",
+      "index": 0,
+      "action": "submit",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "terminal_noops.ndjson",
+      "index": 1,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "terminal_noops.ndjson",
+      "index": 2,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "terminal_noops.ndjson",
+      "index": 3,
+      "action": "release",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "terminal_noops.ndjson",
+      "index": 4,
+      "action": "acknowledge",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "terminal_noops.ndjson",
+      "index": 5,
+      "action": "execute",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "terminal_noops.ndjson",
+      "index": 6,
+      "action": "close",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "mutated",
+        "mutated",
+        "mutated"
+      ]
+    },
+    {
+      "scenario": "terminal_noops.ndjson",
+      "index": 7,
+      "action": "approve",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "rejected(approve-only-when-pending)",
+        "rejected(approve-only-when-pending)",
+        "rejected(approve-only-when-pending)"
+      ]
+    },
+    {
+      "scenario": "terminal_noops.ndjson",
+      "index": 8,
+      "action": "execute",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "rejected(execute-only-when-acknowledged)",
+        "rejected(execute-only-when-acknowledged)",
+        "rejected(execute-only-when-acknowledged)"
+      ]
+    },
+    {
+      "scenario": "terminal_noops.ndjson",
+      "index": 9,
+      "action": "abort",
+      "statuses": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "verdict": "consistent",
+      "classifications": [
+        "rejected(abort-not-allowed-here)",
+        "rejected(abort-not-allowed-here)",
+        "rejected(abort-not-allowed-here)"
+      ]
+    }
+  ],
+  "invReport": {
+    "specs": 3,
+    "checkedSpecs": 3,
+    "statesExplored": 28,
+    "capHit": false,
+    "errors": [],
+    "domainNotes": [],
+    "violations": []
+  },
+  "tlaReport": null
+}

@@ -1,0 +1,131 @@
+{
+  "tool": "polyvers",
+  "milestone": "M3",
+  "changeId": "43c7a1e7f0f7",
+  "oldVersion": "f6835d90c285",
+  "newVersion": "5eca4518d990",
+  "lanes": [
+    "vocabulary",
+    "intent",
+    "semantic"
+  ],
+  "diffs": {
+    "shape": {
+      "changed": false,
+      "added": [],
+      "removed": [],
+      "retyped": []
+    },
+    "vocabulary": {
+      "changed": true,
+      "actions": {
+        "added": [],
+        "removed": [],
+        "fieldsChanged": [],
+        "domainChanged": true,
+        "possibleRenames": []
+      },
+      "rejectReasons": {
+        "added": [],
+        "removed": []
+      },
+      "terminal": {
+        "keyChanged": false,
+        "added": [],
+        "removed": [],
+        "changed": false
+      },
+      "effects": {
+        "kindsAdded": [],
+        "kindsRemoved": [],
+        "wiringChanged": []
+      }
+    },
+    "intent": {
+      "changed": true,
+      "added": [],
+      "removed": [],
+      "renamed": [],
+      "edited": true
+    },
+    "moduleChanged": true,
+    "migrationChanged": false,
+    "mapperChanged": false
+  },
+  "corpus": {
+    "source": "archive (fleet.json)",
+    "count": 5
+  },
+  "adequacy": {
+    "measured": false
+  },
+  "intentProvenance": null,
+  "gates": [
+    {
+      "gate": "load",
+      "ok": true,
+      "summary": "module surface, validate(), contract/manifest cross-checks",
+      "failures": []
+    },
+    {
+      "gate": "vocabulary",
+      "ok": true,
+      "summary": "cross-version action/effect/reject-reason/terminal vocabulary",
+      "failures": []
+    },
+    {
+      "gate": "invariant-diff",
+      "ok": true,
+      "summary": "edited in place (same names, new predicates)",
+      "failures": []
+    },
+    {
+      "gate": "stimuli",
+      "ok": true,
+      "summary": "15 old-version stimulus(es) (full declared domain — a conservative superset of in-flight stimuli) × 5 snapshot(s) = 75 deliveries; every outcome must be accepted or a NAMED observable reject",
+      "failures": []
+    },
+    {
+      "gate": "invariants-pointwise",
+      "ok": false,
+      "summary": "5 state invariant(s) × 5 snapshot(s) = 25 checks (13 transition invariant(s) need transitions, not snapshots — checked by the M1 model-check gate)",
+      "failures": [
+        {
+          "id": "fleet.json#0",
+          "message": "violates 'S1-two-person-integrity' — this state exists (or is reachable); decide what it means BEFORE the deploy"
+        },
+        {
+          "id": "fleet.json#2",
+          "message": "violates 'S1-two-person-integrity' — this state exists (or is reachable); decide what it means BEFORE the deploy"
+        },
+        {
+          "id": "fleet.json#3",
+          "message": "violates 'S1-two-person-integrity' — this state exists (or is reachable); decide what it means BEFORE the deploy"
+        },
+        {
+          "id": "fleet.json#4",
+          "message": "violates 'S1-two-person-integrity' — this state exists (or is reachable); decide what it means BEFORE the deploy"
+        }
+      ]
+    },
+    {
+      "gate": "semantic-model-check",
+      "ok": false,
+      "summary": "exhaustive check from 5 fleet snapshot(s) + init, 92 state(s) checked = 5 seeded from the fleet + 87 discovered from them; one witness per violated rule — not an affected-instance list",
+      "failures": [
+        {
+          "id": "fleet.json#0",
+          "message": "'S1-two-person-integrity' [state] — violated in a seeded initial state; shortest counterexample from snapshot fleet.json#0: (violated at the root state)"
+        }
+      ]
+    },
+    {
+      "gate": "shape-roundtrip",
+      "ok": true,
+      "summary": "setState round-trip over 5 snapshot(s)",
+      "failures": []
+    }
+  ],
+  "deferred": [],
+  "verdict": "FAIL"
+}

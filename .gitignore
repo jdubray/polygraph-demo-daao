@@ -1,0 +1,16 @@
+# Compiled binaries (platform-specific build artifacts — rebuild from .rs)
+daao/safety_engine_rs
+daao/safety_engine_buggy
+*.exe
+*.pdb
+
+# Runtime persistence / transient
+**/store.json
+**/report.json
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db

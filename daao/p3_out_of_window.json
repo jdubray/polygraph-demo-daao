@@ -1,0 +1,6 @@
+{"op":"submit","order":"a3","actor":"Alice","window_start":10,"window_end":50,"t":10}
+{"op":"approve","order":"a3","actor":"Bob","t":20}
+{"op":"approve","order":"a3","actor":"Charlie","t":30}
+{"op":"release","order":"a3","t":40}
+{"op":"acknowledge","order":"a3","t":45}
+{"op":"execute","order":"a3","t":60}
