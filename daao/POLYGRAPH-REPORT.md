@@ -10,6 +10,10 @@ S1–S5 (safety) + L1–L2 (liveness). **Date:** 2026-07-21.
 > multi-order fleets. Every finding is a lead to confirm by hand. This gate is exactly as good as
 > the invariants a human confirms; it is not a substitute for one.
 
+> **New to the vocabulary?** See [`../GLOSSARY.md`](../GLOSSARY.md) for plain-language definitions
+> of every term used here — *mutant*, *invariant*, *model-checking*, *counterexample*, *fleet
+> gate*, and the rest.
+
 ---
 
 ## 0. What was built, and the one fact that forced it
