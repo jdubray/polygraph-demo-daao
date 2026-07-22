@@ -1,0 +1,5 @@
+{"pre":{"status":"idle","firstApprover":"none","transmitted":false,"executedEffect":false},"action":"PROPOSE","data":{},"post":{"status":"pending","firstApprover":"none","transmitted":false,"executedEffect":false}}
+{"pre":{"status":"pending","firstApprover":"none","transmitted":false,"executedEffect":false},"action":"ABORT","data":{},"post":{"status":"aborted","firstApprover":"none","transmitted":false,"executedEffect":false}}
+{"pre":{"status":"aborted","firstApprover":"none","transmitted":false,"executedEffect":false},"action":"EXECUTE","data":{"inWindow":true},"post":{"status":"aborted","firstApprover":"none","transmitted":false,"executedEffect":false}}
+{"pre":{"status":"aborted","firstApprover":"none","transmitted":false,"executedEffect":false},"action":"ACK","data":{},"post":{"status":"aborted","firstApprover":"none","transmitted":false,"executedEffect":false}}
+{"pre":{"status":"aborted","firstApprover":"none","transmitted":false,"executedEffect":false},"action":"CLOSE","data":{},"post":{"status":"aborted","firstApprover":"none","transmitted":false,"executedEffect":false}}

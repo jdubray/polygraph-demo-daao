@@ -1,0 +1,219 @@
+{
+  "lang": "javascript",
+  "stateKeys": [
+    {
+      "name": "status",
+      "type": "string enum: idle | pending | approved | released | acknowledged | executed | closed | aborted | expired"
+    },
+    {
+      "name": "firstApprover",
+      "type": "string enum: none | authA | authB (identity of the first distinct in-window approver)"
+    },
+    {
+      "name": "transmitted",
+      "type": "boolean (external transmit side effect has fired, at most once)"
+    },
+    {
+      "name": "executedEffect",
+      "type": "boolean (external execute side effect has fired, at most once)"
+    }
+  ],
+  "initState": {
+    "status": "idle",
+    "firstApprover": "none",
+    "transmitted": false,
+    "executedEffect": false
+  },
+  "actions": {
+    "PROPOSE": {
+      "dataFields": {}
+    },
+    "APPROVE": {
+      "dataFields": {
+        "actor": "string: identity of the approving authority; 'proposer' is the order's proposer",
+        "inWindow": "boolean: whether the approval arrives within the authorization window"
+      }
+    },
+    "RELEASE": {
+      "dataFields": {
+        "inWindow": "boolean: whether the release attempt occurs within the authorization window"
+      }
+    },
+    "ACK": {
+      "dataFields": {}
+    },
+    "EXECUTE": {
+      "dataFields": {
+        "inWindow": "boolean: whether the execute attempt occurs within the authorization window"
+      }
+    },
+    "CLOSE": {
+      "dataFields": {}
+    },
+    "ABORT": {
+      "dataFields": {}
+    },
+    "EXPIRE": {
+      "dataFields": {
+        "windowPassed": "boolean: whether the authorization window end has passed"
+      }
+    }
+  },
+  "dataDomain": {
+    "PROPOSE": {},
+    "APPROVE": {
+      "actor": [
+        "proposer",
+        "authA",
+        "authB"
+      ],
+      "inWindow": [
+        true,
+        false
+      ]
+    },
+    "RELEASE": {
+      "inWindow": [
+        true,
+        false
+      ]
+    },
+    "ACK": {},
+    "EXECUTE": {
+      "inWindow": [
+        true,
+        false
+      ]
+    },
+    "CLOSE": {},
+    "ABORT": {},
+    "EXPIRE": {
+      "windowPassed": [
+        true,
+        false
+      ]
+    }
+  },
+  "terminalStates": [
+    "closed",
+    "aborted",
+    "expired"
+  ],
+  "specialRules": [
+    {
+      "name": "proposer-cannot-approve",
+      "note": "An APPROVE with actor == 'proposer' must be rejected; the proposer is never a valid authority, regardless of inWindow.",
+      "whenState": "pending",
+      "whenAction": "APPROVE"
+    },
+    {
+      "name": "duplicate-approver-ignored",
+      "note": "An APPROVE whose actor equals firstApprover must not count as a second approval; state stays pending with no change (approvals must come from two DISTINCT authorities).",
+      "whenState": "pending",
+      "whenAction": "APPROVE"
+    },
+    {
+      "name": "approval-outside-window",
+      "note": "An APPROVE with inWindow == false must be rejected and must not record the actor as firstApprover nor advance to approved.",
+      "whenState": "pending",
+      "whenAction": "APPROVE"
+    },
+    {
+      "name": "second-distinct-approval-approves",
+      "note": "Only when actor is a non-proposer authority distinct from firstApprover, firstApprover != 'none', and inWindow == true does status advance to approved; the first such valid approval only records firstApprover and stays pending.",
+      "whenState": "pending",
+      "whenAction": "APPROVE"
+    },
+    {
+      "name": "release-outside-window",
+      "note": "RELEASE with inWindow == false must be rejected; the transmit side effect must not fire and status stays approved.",
+      "whenState": "approved",
+      "whenAction": "RELEASE"
+    },
+    {
+      "name": "release-before-approval",
+      "note": "RELEASE while still pending (fewer than two distinct approvals) must be rejected; transmitted must remain false.",
+      "whenState": "pending",
+      "whenAction": "RELEASE"
+    },
+    {
+      "name": "transmit-at-most-once",
+      "note": "A retried RELEASE after the order is already released must be a no-op; transmitted stays true and the external transmit must not fire a second time.",
+      "whenState": "released",
+      "whenAction": "RELEASE"
+    },
+    {
+      "name": "execute-requires-ack",
+      "note": "EXECUTE while merely released (not yet acknowledged) must be rejected; the ordering is released -> acknowledged -> executed.",
+      "whenState": "released",
+      "whenAction": "EXECUTE"
+    },
+    {
+      "name": "execute-outside-window",
+      "note": "EXECUTE with inWindow == false must be rejected; the external execute effect must not fire and status stays acknowledged.",
+      "whenState": "acknowledged",
+      "whenAction": "EXECUTE"
+    },
+    {
+      "name": "execute-requires-transmit",
+      "note": "EXECUTE must be rejected if transmitted == false; an order must never be executed without having been transmitted first (defense in depth even if the state table implies it).",
+      "whenState": "acknowledged",
+      "whenAction": "EXECUTE"
+    },
+    {
+      "name": "execute-requires-dual-authorization",
+      "note": "EXECUTE must be rejected if firstApprover == 'none' or the dual-approval invariant does not hold; never perform the external action without two distinct non-proposer approvers (defense in depth).",
+      "whenState": "acknowledged",
+      "whenAction": "EXECUTE"
+    },
+    {
+      "name": "execute-at-most-once",
+      "note": "A retried EXECUTE after the order is already executed must be a no-op; executedEffect stays true and the external action must not fire a second time.",
+      "whenState": "executed",
+      "whenAction": "EXECUTE"
+    },
+    {
+      "name": "no-abort-after-execution",
+      "note": "ABORT (recall) is only valid before execution; once executed, ABORT must be rejected and the order proceeds only to closed.",
+      "whenState": "executed",
+      "whenAction": "ABORT"
+    },
+    {
+      "name": "expire-requires-window-passed",
+      "note": "EXPIRE with windowPassed == false must be a no-op; the order only expires once the window end has actually passed.",
+      "whenState": "pending",
+      "whenAction": "EXPIRE"
+    },
+    {
+      "name": "expire-while-approved",
+      "note": "An approved-but-unreleased order with windowPassed == true expires; with windowPassed == false EXPIRE is a no-op.",
+      "whenState": "approved",
+      "whenAction": "EXPIRE"
+    },
+    {
+      "name": "terminal-closed-is-final",
+      "note": "Once closed, every action (including RELEASE, EXECUTE, ABORT, APPROVE) must be a no-op; no side effects and no state change.",
+      "whenState": "closed",
+      "whenAction": "RELEASE"
+    },
+    {
+      "name": "terminal-aborted-is-final",
+      "note": "Once aborted, every action (including EXECUTE and RELEASE) must be a no-op; the recall is irrevocable and no external effect may fire.",
+      "whenState": "aborted",
+      "whenAction": "EXECUTE"
+    },
+    {
+      "name": "terminal-expired-is-final",
+      "note": "Once expired, every action (including EXECUTE, RELEASE, APPROVE) must be a no-op; expiry is irrevocable and no external effect may fire.",
+      "whenState": "expired",
+      "whenAction": "EXECUTE"
+    },
+    {
+      "name": "propose-only-from-idle",
+      "note": "PROPOSE is only valid in idle; re-proposing an already-open order must be a no-op and must not reset approvals or effect flags.",
+      "whenState": "pending",
+      "whenAction": "PROPOSE"
+    }
+  ],
+  "noOpRule": "An action that does not apply in the current state yields post == pre."
+}

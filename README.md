@@ -10,7 +10,7 @@ version gating).
   fleet gate, …). Read this first if the vocabulary is unfamiliar.
 - **[daao/POLYGRAPH-REPORT.md](daao/POLYGRAPH-REPORT.md)** — the full verification report: what was
   checked, every verdict, and the honest defect list.
-- **[daao/POLYGEN-REPORT.md](daao/POLYGEN-REPORT.md)** — the author-from-scratch track (open item).
+- **[daao/POLYGEN-REPORT.md](daao/POLYGEN-REPORT.md)** — the author-from-scratch track — converged with Fable 5.
 - **[PLAN.md](PLAN.md)** — the plan the work followed.
 - **[daao/run_demo.sh](daao/run_demo.sh)** — one command to reproduce the safety, liveness, and
   version-gate results.

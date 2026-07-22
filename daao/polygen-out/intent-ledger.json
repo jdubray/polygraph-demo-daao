@@ -1,0 +1,1089 @@
+{
+  "format": "polynv-ledger/1",
+  "records": [
+    {
+      "id": "mutation-survivor:drop:ABORT@\"acknowledged\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'ABORT' in status=\"acknowledged\" no longer does anything (guard negated to a reject). Concretely: ABORT({}) on {\"status\":\"acknowledged\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false} would yield {\"status\":\"acknowledged\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false} (the real machine yields {\"status\":\"aborted\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'ABORT' in status=\"acknowledged\" no longer does anything (guard negated to a reject)"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:drop:ABORT@\"approved\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'ABORT' in status=\"approved\" no longer does anything (guard negated to a reject). Concretely: ABORT({}) on {\"status\":\"approved\",\"firstApprover\":\"authA\",\"transmitted\":false,\"executedEffect\":false} would yield {\"status\":\"approved\",\"firstApprover\":\"authA\",\"transmitted\":false,\"executedEffect\":false} (the real machine yields {\"status\":\"aborted\",\"firstApprover\":\"authA\",\"transmitted\":false,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'ABORT' in status=\"approved\" no longer does anything (guard negated to a reject)"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:drop:ABORT@\"pending\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'ABORT' in status=\"pending\" no longer does anything (guard negated to a reject). Concretely: ABORT({}) on {\"status\":\"pending\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} would yield {\"status\":\"pending\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} (the real machine yields {\"status\":\"aborted\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'ABORT' in status=\"pending\" no longer does anything (guard negated to a reject)"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:drop:ABORT@\"released\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'ABORT' in status=\"released\" no longer does anything (guard negated to a reject). Concretely: ABORT({}) on {\"status\":\"released\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false} would yield {\"status\":\"released\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false} (the real machine yields {\"status\":\"aborted\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'ABORT' in status=\"released\" no longer does anything (guard negated to a reject)"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:drop:ACK@\"released\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'ACK' in status=\"released\" no longer does anything (guard negated to a reject). Concretely: ACK({}) on {\"status\":\"released\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false} would yield {\"status\":\"released\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false} (the real machine yields {\"status\":\"acknowledged\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'ACK' in status=\"released\" no longer does anything (guard negated to a reject)"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:drop:APPROVE@\"pending\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'APPROVE' in status=\"pending\" no longer does anything (guard negated to a reject). Concretely: APPROVE({\"actor\":\"authA\",\"inWindow\":true}) on {\"status\":\"pending\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} would yield {\"status\":\"pending\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} (the real machine yields {\"status\":\"pending\",\"firstApprover\":\"authA\",\"transmitted\":false,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'APPROVE' in status=\"pending\" no longer does anything (guard negated to a reject)"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:drop:CLOSE@\"executed\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'CLOSE' in status=\"executed\" no longer does anything (guard negated to a reject). Concretely: CLOSE({}) on {\"status\":\"executed\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":true} would yield {\"status\":\"executed\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":true} (the real machine yields {\"status\":\"closed\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":true}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'CLOSE' in status=\"executed\" no longer does anything (guard negated to a reject)"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:drop:EXECUTE@\"acknowledged\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'EXECUTE' in status=\"acknowledged\" no longer does anything (guard negated to a reject). Concretely: EXECUTE({\"inWindow\":true}) on {\"status\":\"acknowledged\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false} would yield {\"status\":\"acknowledged\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false} (the real machine yields {\"status\":\"executed\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":true}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'EXECUTE' in status=\"acknowledged\" no longer does anything (guard negated to a reject)"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:drop:EXPIRE@\"approved\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'EXPIRE' in status=\"approved\" no longer does anything (guard negated to a reject). Concretely: EXPIRE({\"windowPassed\":true}) on {\"status\":\"approved\",\"firstApprover\":\"authA\",\"transmitted\":false,\"executedEffect\":false} would yield {\"status\":\"approved\",\"firstApprover\":\"authA\",\"transmitted\":false,\"executedEffect\":false} (the real machine yields {\"status\":\"expired\",\"firstApprover\":\"authA\",\"transmitted\":false,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'EXPIRE' in status=\"approved\" no longer does anything (guard negated to a reject)"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:drop:EXPIRE@\"pending\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'EXPIRE' in status=\"pending\" no longer does anything (guard negated to a reject). Concretely: EXPIRE({\"windowPassed\":true}) on {\"status\":\"pending\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} would yield {\"status\":\"pending\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} (the real machine yields {\"status\":\"expired\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'EXPIRE' in status=\"pending\" no longer does anything (guard negated to a reject)"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:drop:PROPOSE@\"idle\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'PROPOSE' in status=\"idle\" no longer does anything (guard negated to a reject). Concretely: PROPOSE({}) on {\"status\":\"idle\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} would yield {\"status\":\"idle\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} (the real machine yields {\"status\":\"pending\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'PROPOSE' in status=\"idle\" no longer does anything (guard negated to a reject)"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:drop:RELEASE@\"approved\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'RELEASE' in status=\"approved\" no longer does anything (guard negated to a reject). Concretely: RELEASE({\"inWindow\":true}) on {\"status\":\"approved\",\"firstApprover\":\"authA\",\"transmitted\":false,\"executedEffect\":false} would yield {\"status\":\"approved\",\"firstApprover\":\"authA\",\"transmitted\":false,\"executedEffect\":false} (the real machine yields {\"status\":\"released\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'RELEASE' in status=\"approved\" no longer does anything (guard negated to a reject)"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:retarget:ABORT@\"released\"->\"acknowledged\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'ABORT' in status=\"released\" lands in status=\"acknowledged\" instead. Concretely: ABORT({}) on {\"status\":\"released\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false} would yield {\"status\":\"acknowledged\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false} (the real machine yields {\"status\":\"aborted\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'ABORT' in status=\"released\" lands in status=\"acknowledged\" instead"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:retarget:ACK@\"released\"->\"aborted\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'ACK' in status=\"released\" lands in status=\"aborted\" instead. Concretely: ACK({}) on {\"status\":\"released\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false} would yield {\"status\":\"aborted\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false} (the real machine yields {\"status\":\"acknowledged\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'ACK' in status=\"released\" lands in status=\"aborted\" instead"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:retarget:EXPIRE@\"approved\"->\"aborted\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'EXPIRE' in status=\"approved\" lands in status=\"aborted\" instead. Concretely: EXPIRE({\"windowPassed\":true}) on {\"status\":\"approved\",\"firstApprover\":\"authA\",\"transmitted\":false,\"executedEffect\":false} would yield {\"status\":\"aborted\",\"firstApprover\":\"authA\",\"transmitted\":false,\"executedEffect\":false} (the real machine yields {\"status\":\"expired\",\"firstApprover\":\"authA\",\"transmitted\":false,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'EXPIRE' in status=\"approved\" lands in status=\"aborted\" instead"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:retarget:EXPIRE@\"pending\"->\"aborted\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'EXPIRE' in status=\"pending\" lands in status=\"aborted\" instead. Concretely: EXPIRE({\"windowPassed\":true}) on {\"status\":\"pending\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} would yield {\"status\":\"aborted\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} (the real machine yields {\"status\":\"expired\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'EXPIRE' in status=\"pending\" lands in status=\"aborted\" instead"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:retarget:PROPOSE@\"idle\"->\"aborted\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'PROPOSE' in status=\"idle\" lands in status=\"aborted\" instead. Concretely: PROPOSE({}) on {\"status\":\"idle\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} would yield {\"status\":\"aborted\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} (the real machine yields {\"status\":\"pending\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'PROPOSE' in status=\"idle\" lands in status=\"aborted\" instead"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:retarget:RELEASE@\"approved\"->\"aborted\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'RELEASE' in status=\"approved\" lands in status=\"aborted\" instead. Concretely: RELEASE({\"inWindow\":true}) on {\"status\":\"approved\",\"firstApprover\":\"authA\",\"transmitted\":false,\"executedEffect\":false} would yield {\"status\":\"aborted\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false} (the real machine yields {\"status\":\"released\",\"firstApprover\":\"authA\",\"transmitted\":true,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'RELEASE' in status=\"approved\" lands in status=\"aborted\" instead"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    },
+    {
+      "id": "mutation-survivor:widen:ABORT@\"idle\"<-\"acknowledged\"",
+      "source": "mutation-survivor",
+      "target": "transition",
+      "question": "NO confirmed invariant constrains this behavior change: 'ABORT' now ACCEPTED in status=\"idle\" (applied as it is in status=\"acknowledged\"). Concretely: ABORT({}) on {\"status\":\"idle\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} would yield {\"status\":\"aborted\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false} (the real machine yields {\"status\":\"idle\",\"firstApprover\":\"none\",\"transmitted\":false,\"executedEffect\":false}). Which rule should forbid it? Supply one (disposition modify, then confirm) — or abandon it as genuinely out-of-intent.",
+      "evidence": {
+        "from": "mutation-survivor",
+        "quote": "'ABORT' now ACCEPTED in status=\"idle\" (applied as it is in status=\"acknowledged\")"
+      },
+      "status": "open",
+      "assign": null,
+      "versions": [],
+      "precheck": {
+        "verdict": "NOT-RUN",
+        "note": "no predicate yet — supply the rule via `record --disposition modify`, or abandon as out-of-intent",
+        "date": "2026-07-22T12:45:16.833Z"
+      },
+      "events": [
+        {
+          "type": "harvested",
+          "date": "2026-07-22T12:45:16.833Z"
+        },
+        {
+          "type": "precheck",
+          "verdict": "NOT-RUN",
+          "date": "2026-07-22T12:45:16.833Z"
+        }
+      ]
+    }
+  ],
+  "grade": {
+    "milestone": "M2",
+    "total": 40,
+    "dropped": 47,
+    "equivalent": 3,
+    "harnessKilled": 0,
+    "distinct": 37,
+    "killed": 18,
+    "survivors": [
+      {
+        "id": "drop:ABORT@\"acknowledged\"",
+        "describe": "'ABORT' in status=\"acknowledged\" no longer does anything (guard negated to a reject)",
+        "witness": {
+          "pre": {
+            "status": "acknowledged",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          },
+          "action": "ABORT",
+          "data": {},
+          "mutantPost": {
+            "status": "acknowledged",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "aborted",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "drop:ABORT@\"approved\"",
+        "describe": "'ABORT' in status=\"approved\" no longer does anything (guard negated to a reject)",
+        "witness": {
+          "pre": {
+            "status": "approved",
+            "firstApprover": "authA",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "action": "ABORT",
+          "data": {},
+          "mutantPost": {
+            "status": "approved",
+            "firstApprover": "authA",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "aborted",
+            "firstApprover": "authA",
+            "transmitted": false,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "drop:ABORT@\"pending\"",
+        "describe": "'ABORT' in status=\"pending\" no longer does anything (guard negated to a reject)",
+        "witness": {
+          "pre": {
+            "status": "pending",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "action": "ABORT",
+          "data": {},
+          "mutantPost": {
+            "status": "pending",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "aborted",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "drop:ABORT@\"released\"",
+        "describe": "'ABORT' in status=\"released\" no longer does anything (guard negated to a reject)",
+        "witness": {
+          "pre": {
+            "status": "released",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          },
+          "action": "ABORT",
+          "data": {},
+          "mutantPost": {
+            "status": "released",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "aborted",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "drop:ACK@\"released\"",
+        "describe": "'ACK' in status=\"released\" no longer does anything (guard negated to a reject)",
+        "witness": {
+          "pre": {
+            "status": "released",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          },
+          "action": "ACK",
+          "data": {},
+          "mutantPost": {
+            "status": "released",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "acknowledged",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "drop:APPROVE@\"pending\"",
+        "describe": "'APPROVE' in status=\"pending\" no longer does anything (guard negated to a reject)",
+        "witness": {
+          "pre": {
+            "status": "pending",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "action": "APPROVE",
+          "data": {
+            "actor": "authA",
+            "inWindow": true
+          },
+          "mutantPost": {
+            "status": "pending",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "pending",
+            "firstApprover": "authA",
+            "transmitted": false,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "drop:CLOSE@\"executed\"",
+        "describe": "'CLOSE' in status=\"executed\" no longer does anything (guard negated to a reject)",
+        "witness": {
+          "pre": {
+            "status": "executed",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": true
+          },
+          "action": "CLOSE",
+          "data": {},
+          "mutantPost": {
+            "status": "executed",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": true
+          },
+          "originalPost": {
+            "status": "closed",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": true
+          }
+        }
+      },
+      {
+        "id": "drop:EXECUTE@\"acknowledged\"",
+        "describe": "'EXECUTE' in status=\"acknowledged\" no longer does anything (guard negated to a reject)",
+        "witness": {
+          "pre": {
+            "status": "acknowledged",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          },
+          "action": "EXECUTE",
+          "data": {
+            "inWindow": true
+          },
+          "mutantPost": {
+            "status": "acknowledged",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "executed",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": true
+          }
+        }
+      },
+      {
+        "id": "drop:EXPIRE@\"approved\"",
+        "describe": "'EXPIRE' in status=\"approved\" no longer does anything (guard negated to a reject)",
+        "witness": {
+          "pre": {
+            "status": "approved",
+            "firstApprover": "authA",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "action": "EXPIRE",
+          "data": {
+            "windowPassed": true
+          },
+          "mutantPost": {
+            "status": "approved",
+            "firstApprover": "authA",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "expired",
+            "firstApprover": "authA",
+            "transmitted": false,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "drop:EXPIRE@\"pending\"",
+        "describe": "'EXPIRE' in status=\"pending\" no longer does anything (guard negated to a reject)",
+        "witness": {
+          "pre": {
+            "status": "pending",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "action": "EXPIRE",
+          "data": {
+            "windowPassed": true
+          },
+          "mutantPost": {
+            "status": "pending",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "expired",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "drop:PROPOSE@\"idle\"",
+        "describe": "'PROPOSE' in status=\"idle\" no longer does anything (guard negated to a reject)",
+        "witness": {
+          "pre": {
+            "status": "idle",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "action": "PROPOSE",
+          "data": {},
+          "mutantPost": {
+            "status": "idle",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "pending",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "drop:RELEASE@\"approved\"",
+        "describe": "'RELEASE' in status=\"approved\" no longer does anything (guard negated to a reject)",
+        "witness": {
+          "pre": {
+            "status": "approved",
+            "firstApprover": "authA",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "action": "RELEASE",
+          "data": {
+            "inWindow": true
+          },
+          "mutantPost": {
+            "status": "approved",
+            "firstApprover": "authA",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "released",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "retarget:ABORT@\"released\"->\"acknowledged\"",
+        "describe": "'ABORT' in status=\"released\" lands in status=\"acknowledged\" instead",
+        "witness": {
+          "pre": {
+            "status": "released",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          },
+          "action": "ABORT",
+          "data": {},
+          "mutantPost": {
+            "status": "acknowledged",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "aborted",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "retarget:ACK@\"released\"->\"aborted\"",
+        "describe": "'ACK' in status=\"released\" lands in status=\"aborted\" instead",
+        "witness": {
+          "pre": {
+            "status": "released",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          },
+          "action": "ACK",
+          "data": {},
+          "mutantPost": {
+            "status": "aborted",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "acknowledged",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "retarget:EXPIRE@\"approved\"->\"aborted\"",
+        "describe": "'EXPIRE' in status=\"approved\" lands in status=\"aborted\" instead",
+        "witness": {
+          "pre": {
+            "status": "approved",
+            "firstApprover": "authA",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "action": "EXPIRE",
+          "data": {
+            "windowPassed": true
+          },
+          "mutantPost": {
+            "status": "aborted",
+            "firstApprover": "authA",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "expired",
+            "firstApprover": "authA",
+            "transmitted": false,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "retarget:EXPIRE@\"pending\"->\"aborted\"",
+        "describe": "'EXPIRE' in status=\"pending\" lands in status=\"aborted\" instead",
+        "witness": {
+          "pre": {
+            "status": "pending",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "action": "EXPIRE",
+          "data": {
+            "windowPassed": true
+          },
+          "mutantPost": {
+            "status": "aborted",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "expired",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "retarget:PROPOSE@\"idle\"->\"aborted\"",
+        "describe": "'PROPOSE' in status=\"idle\" lands in status=\"aborted\" instead",
+        "witness": {
+          "pre": {
+            "status": "idle",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "action": "PROPOSE",
+          "data": {},
+          "mutantPost": {
+            "status": "aborted",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "pending",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "retarget:RELEASE@\"approved\"->\"aborted\"",
+        "describe": "'RELEASE' in status=\"approved\" lands in status=\"aborted\" instead",
+        "witness": {
+          "pre": {
+            "status": "approved",
+            "firstApprover": "authA",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "action": "RELEASE",
+          "data": {
+            "inWindow": true
+          },
+          "mutantPost": {
+            "status": "aborted",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "released",
+            "firstApprover": "authA",
+            "transmitted": true,
+            "executedEffect": false
+          }
+        }
+      },
+      {
+        "id": "widen:ABORT@\"idle\"<-\"acknowledged\"",
+        "describe": "'ABORT' now ACCEPTED in status=\"idle\" (applied as it is in status=\"acknowledged\")",
+        "witness": {
+          "pre": {
+            "status": "idle",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "action": "ABORT",
+          "data": {},
+          "mutantPost": {
+            "status": "aborted",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          },
+          "originalPost": {
+            "status": "idle",
+            "firstApprover": "none",
+            "transmitted": false,
+            "executedEffect": false
+          }
+        }
+      }
+    ],
+    "clusters": [
+      [
+        "invariants.mjs:transition:side-effects-monotonic-and-guarded",
+        "invariants.mjs:transition:expire-and-propose-guards"
+      ]
+    ],
+    "notes": [],
+    "ledgerOracleHash": "e3b0c44298fc1c14",
+    "extraOracleCount": 6,
+    "date": "2026-07-22T12:45:16.833Z",
+    "invariantsFileHash": "c22263dead63cd35ba313c31c6ec544b1258312a88d392dc1626f4a10ac75a1f"
+  }
+}
