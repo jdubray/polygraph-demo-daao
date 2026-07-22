@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo 3 — The Version Gate</title>
+<style>
+  :root{
+    --bg:#0e1116; --panel:#161b22; --line:#2b3240; --ink:#f3f5f8; --ink2:#aab3c0;
+    --blue:#3987e5; --orange:#eb6834; --good:#22b455; --crit:#e5484d; --mono:'Cascadia Code',ui-monospace,Consolas,monospace;
+    --sans:'Segoe UI',-apple-system,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme:light){
+    :root{--bg:#f7f8fa;--panel:#ffffff;--line:#e2e5ea;--ink:#0b0e14;--ink2:#5a6472;}
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);}
+  #deck{height:100vh;overflow:hidden;position:relative}
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
+    align-items:center;padding:5vh 5vw 12vh;opacity:0;transition:opacity .25s ease}
+  .slide.on{display:flex;opacity:1}
+  .kicker{font-size:clamp(12px,1.3vw,16px);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:.5em}
+  h1{font-size:clamp(30px,5.2vw,68px);line-height:1.04;margin:0 0 .35em;font-weight:800;max-width:16ch;text-align:center}
+  h2{font-size:clamp(21px,3vw,40px);line-height:1.08;margin:0 0 .5em;font-weight:800;text-align:center}
+  .sub{font-size:clamp(16px,2vw,26px);color:var(--ink2);max-width:30ch;text-align:center;line-height:1.4}
+  .fig{max-width:min(1120px,92vw);max-height:52vh;width:auto;background:#fff;border-radius:14px;
+    box-shadow:0 12px 40px rgba(0,0,0,.35);border:1px solid var(--line)}
+  figcaption{margin-top:.85em;font-size:clamp(13px,1.55vw,20px);color:var(--ink2);max-width:52ch;text-align:center;line-height:1.4}
+  figcaption b{color:var(--ink);font-weight:700}
+  .crit{color:var(--crit)} .good{color:var(--good)} .blue{color:var(--blue)}
+  /* fleet + diff panels */
+  .row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;max-width:1000px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px;min-width:210px;text-align:left}
+  .card.bad{border-color:var(--crit)} .card.ok{border-color:var(--good)}
+  .card .st{font-weight:800;font-size:20px} .card .ap{font-family:var(--mono);color:var(--ink2);font-size:14px;margin-top:4px}
+  .diff{font-family:var(--mono);font-size:clamp(15px,1.8vw,24px);background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:22px 28px;text-align:left;line-height:1.7;max-width:92vw;overflow:auto}
+  .diff .del{color:var(--crit)} .diff .add{color:var(--good)}
+  .lanes{margin-top:20px;font-family:var(--mono);font-size:clamp(14px,1.6vw,20px);color:var(--ink2)}
+  .lanes b{color:var(--orange)}
+  .verdict{margin-top:18px;font-size:clamp(18px,2.4vw,30px);font-weight:800}
+  /* chrome */
+  #nav{position:fixed;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:20px;align-items:center;
+    font-size:14px;color:var(--ink2);z-index:5}
+  #nav button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;
+    padding:6px 14px;font-size:16px;cursor:pointer;font-family:var(--sans)}
+  #dots{display:flex;gap:8px}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer}
+  .dot.on{background:var(--blue)}
+  #prog{position:fixed;top:0;left:0;height:3px;background:var(--blue);transition:width .25s;z-index:6}
+  .hint{position:fixed;top:12px;right:16px;font-size:12px;color:var(--ink2);z-index:5}
+  #notes{position:fixed;left:0;right:0;bottom:52px;margin:0 auto;max-width:70ch;padding:14px 22px;
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;z-index:7;
+    font-size:clamp(15px,1.7vw,21px);line-height:1.45;color:var(--ink);box-shadow:0 -6px 30px rgba(0,0,0,.3);display:none}
+  #notes.on{display:block}
+  #notes .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:6px}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="hint">← / → move · N notes</div>
+<div id="notes"><div class="lbl">say</div><span id="noteText"></span></div>
+<div id="deck">
+
+  <!-- 1 -->
+  <section class="slide">
+    <div class="kicker">Demo 3 · Polygraph</div>
+    <h1>You change one rule.</h1>
+    <p class="sub">The gate tells you which orders <b style="color:var(--ink)">already in production</b> the change would break — <b class="blue">before you deploy</b>.</p>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide">
+    <div class="kicker">The starting point</div>
+    <h2>A machine we've already verified</h2>
+    <img class="fig" src="fig1-state-machine.svg" alt="DAAO state machine">
+    <figcaption>Model-checked green over <b>28 reachable states</b>: it can never authorize an order with fewer than two distinct approvers. This rule — <b>two of N</b> — is live.</figcaption>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide">
+    <div class="kicker">Reality</div>
+    <h2>Five orders are in flight right now</h2>
+    <div class="row">
+      <div class="card bad"><div class="st">#0 APPROVED</div><div class="ap">[bob, carol]</div></div>
+      <div class="card ok"><div class="st">#1 PENDING</div><div class="ap">[bob]</div></div>
+      <div class="card bad"><div class="st">#2 RELEASED</div><div class="ap">[bob, carol]</div></div>
+      <div class="card bad"><div class="st">#3 ACKNOWLEDGED</div><div class="ap">[bob, carol]</div></div>
+      <div class="card bad"><div class="st">#4 CLOSED</div><div class="ap">[bob, carol]</div></div>
+    </div>
+    <figcaption>Every one was approved <b>legally</b> under the two-person rule — two distinct approvers.</figcaption>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide">
+    <div class="kicker">The change</div>
+    <h2>Two becomes three</h2>
+    <div class="diff">
+      <div class="del">- &nbsp;if (approvers.length &gt;= 2) state = 'APPROVED';</div>
+      <div class="add">+ &nbsp;if (approvers.length &gt;= 3) state = 'APPROVED';</div>
+    </div>
+    <div class="lanes">polyvers classify → lanes: <b>vocabulary · intent · semantic</b></div>
+    <figcaption>One line in the code, one in the invariant. Tests stay green. In a normal shop, this ships.</figcaption>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide">
+    <div class="kicker">The gate</div>
+    <h2>Replay the change against the live fleet</h2>
+    <img class="fig" src="fig4-fleet-gate.svg" alt="polyvers version gate — deploy blocked">
+    <figcaption><b class="crit">FAIL — exit 1.</b> Four in-flight orders violate the new rule the instant it ships. Order&nbsp;#0 is already <b>authorized with two approvers</b>; the gate names it and the path to <span style="font-family:var(--mono)">execute</span>.</figcaption>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide">
+    <div class="kicker">And it won't guess the fix</div>
+    <h2>The deploy carries its own proof</h2>
+    <p class="sub" style="max-width:38ch">No pure function turns a 2-approver order into a valid 3-approver one — the missing approval is a <b style="color:var(--ink)">human act</b>. The gate hands the four named orders to a person to re-open, <b class="blue">before</b> the deploy, not after in an incident.</p>
+    <figcaption style="margin-top:1.6em">Changing a rule means re-accrediting the system against the state it already holds. Normally: a spreadsheet and a prayer. Here: the deploy tells you exactly what you just invalidated.</figcaption>
+  </section>
+
+</div>
+
+<div id="nav">
+  <button id="prev" aria-label="Previous">‹</button>
+  <div id="dots"></div>
+  <button id="next" aria-label="Next">›</button>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const dotsWrap=document.getElementById('dots');
+  const prog=document.getElementById('prog');
+  const notesBox=document.getElementById('notes'), noteText=document.getElementById('noteText');
+  const NOTES=[
+    "Set the stakes: one rule change, and the gate tells you what it breaks in production — before deploy.",
+    "This machine is live and model-checked green under the two-of-N rule. It can never authorize an order with fewer than two distinct approvers.",
+    "Five real orders in flight — every one approved legally under the two-person rule, two distinct approvers. Note #1 (green) has only one approver, still pending.",
+    "Compliance tightens the rule to three. One line in the code, one in the invariant. Normally this ships green, and nobody thinks about the orders already approved under the old rule.",
+    "The gate classifies the change itself — vocabulary, intent, semantics — then replays it against the states production holds right now. FAIL, exit 1: four in-flight orders violate the new rule the instant it ships; #0 is already authorized with two approvers. It names them and the path to execute.",
+    "It won't auto-migrate — the missing approval is a human act. It hands you the four named orders to re-open, before the deploy, not after in an incident. The deploy carries its own proof.",
+  ];
+  let i=0;
+  slides.forEach((_,n)=>{const d=document.createElement('div');d.className='dot';d.onclick=()=>go(n);dotsWrap.appendChild(d);});
+  const dots=[...document.querySelectorAll('.dot')];
+  function go(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+    dots.forEach((d,k)=>d.classList.toggle('on',k===i));
+    prog.style.width=((i+1)/slides.length*100)+'%';
+    noteText.textContent=NOTES[i]||'';
+  }
+  document.getElementById('next').onclick=()=>go(i+1);
+  document.getElementById('prev').onclick=()=>go(i-1);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(i+1);}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1);}
+    if(e.key==='Home')go(0); if(e.key==='End')go(slides.length-1);
+    if(e.key==='n'||e.key==='N')notesBox.classList.toggle('on');
+  });
+  go(0);
+</script>
+</body>
+</html>
