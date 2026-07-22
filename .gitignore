@@ -8,6 +8,10 @@ daao/safety_engine_buggy
 **/store.json
 **/report.json
 
+# Personal drafts — not part of the repo
+linkedin-article.md
+*.draft.md
+
 # Node
 node_modules/
 
