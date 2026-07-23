@@ -14,25 +14,23 @@ New to the vocabulary (mutant, invariant, model-checking, fleet gate)? Read
 ## The three demos
 
 Each demo is one beat you can trigger yourself. They assume **Claude Code with the Polygraph plugins
-installed** and the verified machine already present in [`daao/verify/`](daao/verify). The
-model-checker and `polyvers` are deterministic and need **no API key**; only the bonus (`polygen`)
-does.
+installed**. `polygen` (Demo 1) needs an `ANTHROPIC_API_KEY`; the model-checker and `polyvers`
+(Demos 2–3) are deterministic and need **no key**. Demos 2–3 use the verified machine already present
+in [`daao/verify/`](daao/verify).
 
-### Demo 1 — Verification vs. vibes
+### Demo 1 — Author it from scratch (`polygen`)
 
-*A green checkmark is not a proof. The gate tells you which differences actually matter.* `daao/`
-ships two independently generated implementations (Python + Rust) that were claimed to be identical.
-They aren't — the Rust build serializes from a `HashMap`, so its output is non-deterministic
-run-to-run: harmless for behavior, fatal for an audit log you hash or sign.
+*One paragraph of English → a machine born with a contract, invariants, and a regression corpus,
+model-checked before you ever see it.* A frontier model wrote the whole verified DAAO from a
+description and converged on the first try — for **$1.81** of model spend.
 
-> **Prompt:** `daao/` contains two independently generated implementations of the same machine
-> (Python and Rust) whose README claims identical output — "any divergence is a defect." Check
-> whether that's actually true: run both across the example traces, byte-diff the results, and run
-> the non-deterministic one a few times. Tell me which divergences are benign for behavior and which
-> would break an audit log that's hashed, signed, or replicated by checksum.
+> **Prompt:** Write a verifiable dual-authorization action-order state machine with polygen from this
+> description: [one paragraph describing the states, the two-distinct-approver rule, the in-window
+> exactly-once effects, recall, and expiry]. Model-check it against its own invariants, self-repair
+> any reachable violation, and give me the contract, invariants, and a regression corpus.
 
-Result: [`daao/POLYGRAPH-CONFORMANCE-FINDINGS.md`](daao/POLYGRAPH-CONFORMANCE-FINDINGS.md) · defect
-**D1** in the report.
+Result: [`daao/POLYGEN-REPORT.md`](daao/POLYGEN-REPORT.md) (the exact intent paragraph is in §1) ·
+[`daao/polygen-out/`](daao/polygen-out).
 
 ### Demo 2 — The catch (find the bug your tests miss)
 
@@ -67,19 +65,21 @@ Result: [`daao/out/compat/`](daao/out/compat) · figure
 slides: [`daao/DEMO3-RUNBOOK.md`](daao/DEMO3-RUNBOOK.md), [`daao/demo3.sh`](daao/demo3.sh),
 [`daao/figures/demo3.html`](daao/figures/demo3.html).
 
-### Bonus — author it from scratch (`polygen`)
+### Also — verification vs. vibes
 
-Not one of the three acts, kept as a separate track: a frontier model writes the whole verified
-machine from one paragraph of English, born with a contract, invariants, and a regression corpus —
-model-checked before you ever see it. Converged first try; **$1.81** of model spend. Needs an
-`ANTHROPIC_API_KEY`.
+*A green checkmark is not a proof; the gate tells you which differences actually matter.* `daao/`
+ships two independently generated implementations (Python + Rust) claimed to be identical. They
+aren't — the Rust build serializes from a `HashMap`, so its output is non-deterministic run-to-run:
+harmless for behavior, fatal for an audit log you hash or sign.
 
-> **Prompt:** Write a verifiable dual-authorization action-order state machine with polygen from this
-> description: [one paragraph describing the states, the two-distinct-approver rule, the in-window
-> exactly-once effects, recall, and expiry]. Model-check it against its own invariants, self-repair
-> any reachable violation, and give me the contract, invariants, and a regression corpus.
+> **Prompt:** `daao/` contains two independently generated implementations of the same machine
+> (Python and Rust) whose README claims identical output — "any divergence is a defect." Check
+> whether that's actually true: byte-diff the outputs across the example traces and run the
+> non-deterministic one a few times. Tell me which divergences are benign for behavior and which
+> would break an audit log that's hashed, signed, or replicated by checksum.
 
-Result: [`daao/POLYGEN-REPORT.md`](daao/POLYGEN-REPORT.md) · [`daao/polygen-out/`](daao/polygen-out).
+Result: [`daao/POLYGRAPH-CONFORMANCE-FINDINGS.md`](daao/POLYGRAPH-CONFORMANCE-FINDINGS.md) · defect
+**D1** in the report.
 
 ---
 
