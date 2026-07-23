@@ -9,6 +9,10 @@ every approval, checkout, and payment flow.
 New to the vocabulary (mutant, invariant, model-checking, fleet gate)? Read
 **[GLOSSARY.md](GLOSSARY.md)** first.
 
+> **Verified on Polygraph v6.0.0** (sam-pattern 2.1 explicit next-state / "prime" semantics). The
+> modules use the `next`/`unchanged` acceptor form; every result below reproduces bit-for-bit under
+> v6, and the figures are rendered by the v6 `polyviz` engine.
+
 ---
 
 ## The three demos
@@ -61,7 +65,7 @@ would carry one to `execute`.
 > the shortest path by which the new rule would carry one to `execute`.
 
 Result: [`daao/out/compat/`](daao/out/compat) · figure
-[`daao/figures/fig4-fleet-gate.png`](daao/figures/fig4-fleet-gate.png) · live runbook +
+[`daao/figures/polyviz/compat-gate.png`](daao/figures/polyviz/compat-gate.png) · live runbook +
 slides: [`daao/DEMO3-RUNBOOK.md`](daao/DEMO3-RUNBOOK.md), [`daao/demo3.sh`](daao/demo3.sh),
 [`daao/figures/demo3.html`](daao/figures/demo3.html).
 
@@ -98,7 +102,10 @@ bash daao/run_demo.sh          # Demos 2 + 3 + liveness + differential, one shot
 
 ## Layout
 
-- `daao/verify/` — the verified artifact: the SAM v2 module (`next.cjs`), contract, invariants,
+- `daao/figures/polyviz/` — the figures, rendered by **polyviz** deterministically from the
+  artifacts (state-machine, invariants, compat-gate, model-card) — same inputs, byte-identical SVG.
+- `daao/verify/` — the verified artifact: the SAM v2 **next-state** module (`next.cjs`, sam-pattern
+  2.1 `next`/`unchanged` form), contract, invariants,
   reachability harness, trace corpus, planted-bug control, and the converged intent ledger
   (`INTENT-LOG.md`).
 - `daao/verify-v3/` — the three-approver evolution + fleet snapshots for Demo 3.

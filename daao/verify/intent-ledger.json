@@ -6266,6 +6266,14 @@
     ],
     "clusters": [
       [
+        "prior:S3-execute-requires-transmit",
+        "invariants.mjs:state:S3-execute-requires-transmit"
+      ],
+      [
+        "prior:L1-abort-well-formed",
+        "invariants.mjs:transition:L1-abort-well-formed"
+      ],
+      [
         "invariants.mjs:state:S1-two-person-integrity",
         "invariants.mjs:transition:S5-authorized-only-earned"
       ],
@@ -6283,9 +6291,9 @@
       ]
     ],
     "notes": [],
-    "ledgerOracleHash": "e3b0c44298fc1c14",
+    "ledgerOracleHash": "8d7747736453d492",
     "extraOracleCount": 18,
-    "date": "2026-07-21T12:13:27.626Z",
+    "date": "2026-07-23T02:12:38.895Z",
     "invariantsFileHash": "fea10c205faf0f037a7b59cc4872f77a5c9b6c71c8968a8477e959ae951f1bf6"
   }
 }

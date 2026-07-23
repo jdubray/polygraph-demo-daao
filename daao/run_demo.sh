@@ -4,7 +4,7 @@
 # differential spec generation (Act 2b); it is skipped with a notice if unset.
 set -uo pipefail
 
-PLUGIN="${POLYGRAPH_PLUGIN:-$HOME/.claude/plugins/cache/polygraph/polygraph/5.0.0}"
+PLUGIN="${POLYGRAPH_PLUGIN:-$(ls -d "$HOME"/.claude/plugins/cache/polygraph/polygraph/*/ 2>/dev/null | sort -V | tail -1)}"
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 V="$HERE/verify"
 NM="$PLUGIN/node_modules"

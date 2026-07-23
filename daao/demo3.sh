@@ -10,7 +10,7 @@ set -uo pipefail
 
 AUTO=0; [ "${1:-}" = "--auto" ] && AUTO=1
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PV="${POLYGRAPH_PLUGIN:-$HOME/.claude/plugins/cache/polygraph/polygraph/5.0.0}"
+PV="${POLYGRAPH_PLUGIN:-$(ls -d "$HOME"/.claude/plugins/cache/polygraph/polygraph/*/ 2>/dev/null | sort -V | tail -1)}"
 cd "$HERE"
 
 # colors (fall back to plain if not a tty)

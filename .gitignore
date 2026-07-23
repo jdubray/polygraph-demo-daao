@@ -7,6 +7,7 @@ daao/safety_engine_buggy
 # Runtime persistence / transient
 **/store.json
 **/report.json
+**/_buggy/
 
 # Personal drafts — not part of the repo
 linkedin-article.md

@@ -81,72 +81,90 @@ const control = instance({
       abort: { action: (d = {}) => ({ ...d }), schema: {}, domain: [{}] },
       expire: { action: (d = {}) => ({ ...d }), schema: {}, domain: [{ now: 50 }, { now: 150 }] },
     },
+    // sam-pattern 2.1 next-state (prime) form: `model` is the frozen pre-state
+    // (read-only), all writes go to the `next` draft, and every declared
+    // modelShape variable must be assigned in `next` OR named `unchanged(...)`
+    // per accepted step (the TLA+ frame rule). A rejection returns before any
+    // write, so it needs no frame.
     acceptors: {
       // DRAFT --submit--> PENDING_APPROVAL ; set proposer + window.
-      submit: (model) => (p, { reject }) => {
+      submit: (model) => (p, { reject, next, unchanged }) => {
         if (model.state !== 'DRAFT') return reject('submit-only-from-draft');
         if (p.actor == null || p.window_start == null || p.window_end == null) {
           return reject('submit-missing-proposer-or-window');
         }
-        model.proposer = p.actor;
-        model.window_start = p.window_start;
-        model.window_end = p.window_end;
-        model.state = 'PENDING_APPROVAL';
+        next.proposer = p.actor;
+        next.window_start = p.window_start;
+        next.window_end = p.window_end;
+        next.state = 'PENDING_APPROVAL';
+        unchanged('approvers', 'transmitted', 'executed');
       },
 
       // PENDING_APPROVAL --approve--> stays PENDING_APPROVAL, or reaches
       // APPROVED on the 2nd distinct in-window approver. Guards: not proposer,
       // not already an approver, now in window.
-      approve: (model) => (p, { reject }) => {
+      approve: (model) => (p, { reject, next, unchanged }) => {
         if (model.state !== 'PENDING_APPROVAL') return reject('approve-only-when-pending');
         if (p.actor == null) return reject('approve-missing-actor');
         if (p.actor === model.proposer) return reject('approver-is-proposer');
         if (model.approvers.indexOf(p.actor) !== -1) return reject('duplicate-approver');
         if (!inWindow(model, p.now)) return reject('approve-out-of-window');
-        model.approvers = model.approvers.concat([p.actor]);
-        if (model.approvers.length >= 2) model.state = 'APPROVED';
+        const approvers = model.approvers.concat([p.actor]);
+        next.approvers = approvers;
+        if (approvers.length >= 2) {
+          next.state = 'APPROVED';
+          unchanged('proposer', 'window_start', 'window_end', 'transmitted', 'executed');
+        } else {
+          unchanged('state', 'proposer', 'window_start', 'window_end', 'transmitted', 'executed');
+        }
       },
 
       // APPROVED --release--> RELEASED ; transmit() once, in-window.
-      release: (model) => (p, { reject }) => {
+      release: (model) => (p, { reject, next, unchanged }) => {
         if (model.state !== 'APPROVED') return reject('release-only-when-approved');
         if (!inWindow(model, p.now)) return reject('release-out-of-window');
-        model.transmitted = true;
-        model.state = 'RELEASED';
+        next.transmitted = true;
+        next.state = 'RELEASED';
+        unchanged('proposer', 'approvers', 'window_start', 'window_end', 'executed');
       },
 
       // RELEASED --acknowledge--> ACKNOWLEDGED.
-      acknowledge: (model) => (_p, { reject }) => {
+      acknowledge: (model) => (_p, { reject, next, unchanged }) => {
         if (model.state !== 'RELEASED') return reject('acknowledge-only-when-released');
-        model.state = 'ACKNOWLEDGED';
+        next.state = 'ACKNOWLEDGED';
+        unchanged('proposer', 'approvers', 'window_start', 'window_end', 'transmitted', 'executed');
       },
 
       // ACKNOWLEDGED --execute--> EXECUTED ; execute() once, in-window.
-      execute: (model) => (p, { reject }) => {
+      execute: (model) => (p, { reject, next, unchanged }) => {
         if (model.state !== 'ACKNOWLEDGED') return reject('execute-only-when-acknowledged');
         if (!inWindow(model, p.now)) return reject('execute-out-of-window');
-        model.executed = true;
-        model.state = 'EXECUTED';
+        next.executed = true;
+        next.state = 'EXECUTED';
+        unchanged('proposer', 'approvers', 'window_start', 'window_end', 'transmitted');
       },
 
       // EXECUTED --close--> CLOSED.
-      close: (model) => (_p, { reject }) => {
+      close: (model) => (_p, { reject, next, unchanged }) => {
         if (model.state !== 'EXECUTED') return reject('close-only-when-executed');
-        model.state = 'CLOSED';
+        next.state = 'CLOSED';
+        unchanged('proposer', 'approvers', 'window_start', 'window_end', 'transmitted', 'executed');
       },
 
       // {PENDING_APPROVAL,APPROVED,RELEASED,ACKNOWLEDGED} --abort--> ABORTED.
-      abort: (model) => (_p, { reject }) => {
+      abort: (model) => (_p, { reject, next, unchanged }) => {
         if (ABORTABLE.indexOf(model.state) === -1) return reject('abort-not-allowed-here');
-        model.state = 'ABORTED';
+        next.state = 'ABORTED';
+        unchanged('proposer', 'approvers', 'window_start', 'window_end', 'transmitted', 'executed');
       },
 
       // {PENDING_APPROVAL,APPROVED,RELEASED,ACKNOWLEDGED} --expire--> EXPIRED,
       // only once now is strictly past the window end.
-      expire: (model) => (p, { reject }) => {
+      expire: (model) => (p, { reject, next, unchanged }) => {
         if (EXPIRABLE.indexOf(model.state) === -1) return reject('expire-not-allowed-here');
         if (model.window_end === null || p.now <= model.window_end) return reject('expire-before-window-end');
-        model.state = 'EXPIRED';
+        next.state = 'EXPIRED';
+        unchanged('proposer', 'approvers', 'window_start', 'window_end', 'transmitted', 'executed');
       },
     },
     reactors: [],

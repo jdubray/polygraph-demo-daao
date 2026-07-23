@@ -73,7 +73,7 @@
   <section class="slide">
     <div class="kicker">The starting point</div>
     <h2>A machine we've already verified</h2>
-    <img class="fig" src="fig1-state-machine.svg" alt="DAAO state machine">
+    <img class="fig" src="polyviz/state-machine.svg" alt="DAAO state machine">
     <figcaption>Model-checked green over <b>28 reachable states</b>: it can never authorize an order with fewer than two distinct approvers. This rule — <b>two of N</b> — is live.</figcaption>
   </section>
 
@@ -107,7 +107,7 @@
   <section class="slide">
     <div class="kicker">The gate</div>
     <h2>Replay the change against the live fleet</h2>
-    <img class="fig" src="fig4-fleet-gate.svg" alt="polyvers version gate — deploy blocked">
+    <img class="fig" src="polyviz/compat-gate.svg" alt="polyvers version gate — deploy blocked">
     <figcaption><b class="crit">FAIL — exit 1.</b> Four in-flight orders violate the new rule the instant it ships. Order&nbsp;#0 is already <b>authorized with two approvers</b>; the gate names it and the path to <span style="font-family:var(--mono)">execute</span>.</figcaption>
   </section>
 

@@ -96,6 +96,16 @@ re-run — not a code patch by hand.
 - Same disclosure as everything else in this repo: consistency check over a declared finite domain,
   not a proof.
 
+## 5b. v6.0.0 re-author (2026-07-22) — and the prose fix landed
+
+Re-run under Polygraph **v6.0.0** (sam-pattern 2.1). polygen now authors the **next-state**
+(`next`/`unchanged`) form natively; Fable 5 converged first try again — `polygen-out-v6/`, 70 states,
+0 violations, 203-window corpus, independently re-checked clean under v6. **The one real defect from
+§4 is gone:** I corrected the ambiguous intent sentence to *"an order that has not yet executed can
+expire … from pending, approved, released, or acknowledged,"* and the authored machine now permits
+expiry from all four states — matching the spec. The lesson holds exactly as stated: the fix was a
+contract/prose edit, not a code patch, and it took a human who knew the real spec to make it.
+
 ## 6. Reproduce
 
 ```bash

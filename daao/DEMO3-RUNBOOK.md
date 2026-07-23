@@ -13,7 +13,7 @@ size, one window.
 
 ```bash
 cd ~/code/polygraph-demo/daao
-export PV=~/.claude/plugins/cache/polygraph/polygraph/5.0.0
+export PV=$(ls -d ~/.claude/plugins/cache/polygraph/polygraph/*/ | sort -V | tail -1)   # latest installed (6.0.0)
 alias nogunk='grep -v "shadow Model method"'   # hides one benign SAM warning line
 ```
 

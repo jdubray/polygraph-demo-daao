@@ -14,6 +14,14 @@ S1–S5 (safety) + L1–L2 (liveness). **Date:** 2026-07-21.
 > of every term used here — *mutant*, *invariant*, *model-checking*, *counterexample*, *fleet
 > gate*, and the rest.
 
+> **v6.0.0 update (2026-07-22).** Polygraph moved to sam-pattern **2.1** (explicit next-state /
+> "prime" semantics): strict acceptors write to a frozen-pre-state `next` draft and frame every
+> variable with `unchanged(...)`; the old in-place `model.x =` form now throws. The DAAO modules
+> were migrated to the `next`/`unchanged` form and **every result in this report reproduces
+> bit-for-bit under v6** (clean 28/0, planted-bug 46/3, widen-ack 34/1, v3 85/0, reachability
+> L1/L2/S4, polyvers FAIL, grade 24/38, differential 54/54). The figures are now rendered by the v6
+> `polyviz` engine from these same artifacts (`figures/polyviz/`).
+
 ---
 
 ## 0. What was built, and the one fact that forced it

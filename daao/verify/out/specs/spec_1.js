@@ -22,7 +22,7 @@ const inWindow = (m, now) =>
   now >= m.window_start && now <= m.window_end;
 
 const control = instance({
-  initialState: { ...INITIAL_STATE, approvers: [] },
+  initialState: JSON.parse(JSON.stringify(INITIAL_STATE)),
   component: {
     modelShape: {
       state: { type: 'string' },
@@ -87,60 +87,73 @@ const control = instance({
       },
     },
     acceptors: {
-      submit: (model) => (p, { reject }) => {
+      submit: (model) => (p, { reject, next, unchanged }) => {
         if (model.state !== 'DRAFT') return reject('submit-only-from-draft');
         if (p.actor == null || p.window_start == null || p.window_end == null) {
           return reject('submit-missing-proposer-or-window');
         }
-        model.proposer = p.actor;
-        model.window_start = p.window_start;
-        model.window_end = p.window_end;
-        model.state = 'PENDING_APPROVAL';
+        next.proposer = p.actor;
+        next.window_start = p.window_start;
+        next.window_end = p.window_end;
+        next.state = 'PENDING_APPROVAL';
+        unchanged('approvers', 'transmitted', 'executed');
       },
 
-      approve: (model) => (p, { reject }) => {
+      approve: (model) => (p, { reject, next, unchanged }) => {
         if (model.state !== 'PENDING_APPROVAL') return reject('approve-only-when-pending');
         if (p.actor == null) return reject('approve-missing-actor');
         if (p.actor === model.proposer) return reject('approver-is-proposer');
         if (model.approvers.indexOf(p.actor) !== -1) return reject('duplicate-approver');
         if (!inWindow(model, p.now)) return reject('approve-out-of-window');
-        model.approvers = model.approvers.concat([p.actor]);
-        if (model.approvers.length >= 2) model.state = 'APPROVED';
+        const approvers = model.approvers.concat([p.actor]);
+        next.approvers = approvers;
+        if (approvers.length >= 2) {
+          next.state = 'APPROVED';
+          unchanged('proposer', 'window_start', 'window_end', 'transmitted', 'executed');
+        } else {
+          unchanged('state', 'proposer', 'window_start', 'window_end', 'transmitted', 'executed');
+        }
       },
 
-      release: (model) => (p, { reject }) => {
+      release: (model) => (p, { reject, next, unchanged }) => {
         if (model.state !== 'APPROVED') return reject('release-only-when-approved');
         if (!inWindow(model, p.now)) return reject('release-out-of-window');
-        model.transmitted = true;
-        model.state = 'RELEASED';
+        next.transmitted = true;
+        next.state = 'RELEASED';
+        unchanged('proposer', 'approvers', 'window_start', 'window_end', 'executed');
       },
 
-      acknowledge: (model) => (_p, { reject }) => {
+      acknowledge: (model) => (_p, { reject, next, unchanged }) => {
         if (model.state !== 'RELEASED') return reject('acknowledge-only-when-released');
-        model.state = 'ACKNOWLEDGED';
+        next.state = 'ACKNOWLEDGED';
+        unchanged('proposer', 'approvers', 'window_start', 'window_end', 'transmitted', 'executed');
       },
 
-      execute: (model) => (p, { reject }) => {
+      execute: (model) => (p, { reject, next, unchanged }) => {
         if (model.state !== 'ACKNOWLEDGED') return reject('execute-only-when-acknowledged');
         if (!inWindow(model, p.now)) return reject('execute-out-of-window');
-        model.executed = true;
-        model.state = 'EXECUTED';
+        next.executed = true;
+        next.state = 'EXECUTED';
+        unchanged('proposer', 'approvers', 'window_start', 'window_end', 'transmitted');
       },
 
-      close: (model) => (_p, { reject }) => {
+      close: (model) => (_p, { reject, next, unchanged }) => {
         if (model.state !== 'EXECUTED') return reject('close-only-when-executed');
-        model.state = 'CLOSED';
+        next.state = 'CLOSED';
+        unchanged('proposer', 'approvers', 'window_start', 'window_end', 'transmitted', 'executed');
       },
 
-      abort: (model) => (_p, { reject }) => {
+      abort: (model) => (_p, { reject, next, unchanged }) => {
         if (ABORTABLE.indexOf(model.state) === -1) return reject('abort-not-allowed-here');
-        model.state = 'ABORTED';
+        next.state = 'ABORTED';
+        unchanged('proposer', 'approvers', 'window_start', 'window_end', 'transmitted', 'executed');
       },
 
-      expire: (model) => (p, { reject }) => {
+      expire: (model) => (p, { reject, next, unchanged }) => {
         if (EXPIRABLE.indexOf(model.state) === -1) return reject('expire-not-allowed-here');
         if (model.window_end === null || p.now <= model.window_end) return reject('expire-before-window-end');
-        model.state = 'EXPIRED';
+        next.state = 'EXPIRED';
+        unchanged('proposer', 'approvers', 'window_start', 'window_end', 'transmitted', 'executed');
       },
     },
     reactors: [],
