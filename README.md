@@ -22,6 +22,8 @@ installed**. `polygen` (Demo 1) needs an `ANTHROPIC_API_KEY`; the model-checker 
 (Demos 2–3) are deterministic and need **no key**. Demos 2–3 use the verified machine already present
 in [`daao/verify/`](daao/verify).
 
+![Polygraph architecture — one deterministic gate at the center, founded on SAM v2, with design-time engines (polygen, polynv, polyvers), runtime (polyrun), agents (polysec, polyman), qualified across frontier models by SysMoBench and tuned on 100 production state machines.](daao/figures/polygraph-architecture.png)
+
 ### Demo 1 — Author it from scratch (`polygen`)
 
 *One paragraph of English → a machine born with a contract, invariants, and a regression corpus,
